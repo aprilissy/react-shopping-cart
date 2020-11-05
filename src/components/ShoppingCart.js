@@ -8,7 +8,7 @@ import Item from './ShoppingCartItem';
 
 
 const ShoppingCart = () => {
-	const cart = useContext(CartContext)
+	const {cart, removeItem} = useContext(CartContext)
 	console.log('cart',cart);
 	
 	const getCartTotal = () => {
@@ -19,8 +19,8 @@ const ShoppingCart = () => {
 
 	return (
 		<div className="shopping-cart">
-			{cart.map(item => (
-				<Item key={item.id} {...item} />
+			{cart.map((item, index) => (
+				<Item key={`${item.id}-${index}`} {...item} index={index} removeItem={removeItem}/>
 			))}
 
 			<div className="shopping-cart__checkout">
